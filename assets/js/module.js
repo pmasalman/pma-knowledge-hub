@@ -16,9 +16,8 @@
 
 'use strict';
 
-import {
-  API
-} from './api.js?v=20260715-1';
+import { API } from './api.js?v=20260715-1';
+
 
 const APP_CONFIG = Object.freeze({
   viewStorageKey: 'pma_module_views',
@@ -73,100 +72,6 @@ async function initializeModulePage() {
   }
 }
 
-
-/* ==========================================================
-   TEMPORARY API
-   ========================================================== */
-
-const API = Object.freeze({
-  async getModuleById(moduleId) {
-    await delay(250);
-
-    const normalizedId = cleanText(moduleId).toLowerCase();
-
-    const module = DEMO_MODULES.find(
-      (item) =>
-        cleanText(item.id).toLowerCase() === normalizedId &&
-        item.status === 'PUBLISHED'
-    );
-
-    return module ? { ...module } : null;
-  },
-
-  async getRelatedModules(currentModule) {
-    await delay(100);
-
-    return DEMO_MODULES
-      .filter(
-        (item) =>
-          item.status === 'PUBLISHED' &&
-          item.id !== currentModule.id
-      )
-      .sort((first, second) => {
-        const firstScore = getRelatedScore(
-          first,
-          currentModule
-        );
-
-        const secondScore = getRelatedScore(
-          second,
-          currentModule
-        );
-
-        if (firstScore !== secondScore) {
-          return secondScore - firstScore;
-        }
-
-        return (
-          parseDate(second.updatedAt) -
-          parseDate(first.updatedAt)
-        );
-      })
-      .slice(0, APP_CONFIG.relatedLimit)
-      .map((item) => ({ ...item }));
-  },
-
-  async recordModuleView(moduleId) {
-    const views = readLocalStorage(
-      APP_CONFIG.viewStorageKey,
-      {}
-    );
-
-    const safeViews =
-      views && typeof views === 'object'
-        ? views
-        : {};
-
-    const currentDemoCount = Number(
-      state.module?.viewCount || 0
-    );
-
-    const storedCount = Number(
-      safeViews[moduleId] || currentDemoCount
-    );
-
-    const newCount = storedCount + 1;
-
-    safeViews[moduleId] = newCount;
-
-    writeLocalStorage(
-      APP_CONFIG.viewStorageKey,
-      safeViews
-    );
-
-    return newCount;
-  },
-
-  async resolveFileUrl(module) {
-    /*
-     * Saat memakai Supabase Storage private:
-     * 1. Database menyimpan file_path, bukan URL permanen.
-     * 2. Fungsi ini meminta signed URL dari Supabase.
-     * 3. URL sementara dikirim ke preview dan tombol buka.
-     */
-    return cleanUrl(module.fileUrl);
-  }
-});
 
 
 /* ==========================================================
@@ -370,21 +275,45 @@ async function renderModule(module) {
 
   applyCoverImage(module.thumbnailUrl);
 
-  const fileUrl = await API.resolveFileUrl(module);
+  let fileUrl = cleanUrl(module.externalUrl);
+  let downloadUrl = '';
+  let fileAccessError = null;
+
+  if (!fileUrl && module.filePath) {
+    try {
+      fileUrl = await API.createSignedModuleFileUrl(
+        module.filePath,
+        { expiresIn: 3600, download: false }
+      );
+
+      downloadUrl = await API.createSignedModuleFileUrl(
+        module.filePath,
+        { expiresIn: 3600, download: true }
+      );
+    } catch (error) {
+      fileAccessError = error;
+    }
+  }
+
   const videoEmbedUrl = normalizeVideoEmbedUrl(
     module.videoUrl
   );
 
-  renderContentViewer(
-    module,
-    fileUrl,
-    videoEmbedUrl
-  );
+  if (fileAccessError?.code === 'AUTH_REQUIRED') {
+    renderLoginRequiredViewer();
+  } else {
+    renderContentViewer(
+      module,
+      fileUrl,
+      videoEmbedUrl
+    );
+  }
 
   configureActionButtons(
     module,
     fileUrl,
-    videoEmbedUrl
+    videoEmbedUrl,
+    downloadUrl
   );
 }
 
@@ -582,6 +511,35 @@ function renderExternalLinkViewer(module, fileUrl) {
   elements.viewer.appendChild(card);
 }
 
+function renderLoginRequiredViewer() {
+  setText(
+    elements.viewerTitle,
+    'Login Diperlukan'
+  );
+
+  const card = document.createElement('div');
+  card.className = 'viewer-placeholder';
+
+  const icon = document.createElement('span');
+  icon.className = 'viewer-placeholder-icon';
+  icon.textContent = '🔒';
+
+  const title = document.createElement('h3');
+  title.textContent = 'Masuk untuk membuka file materi';
+
+  const description = document.createElement('p');
+  description.textContent =
+    'File PDF, gambar, dan PowerPoint disimpan secara privat untuk melindungi materi internal PMA.';
+
+  const link = document.createElement('a');
+  link.className = 'primary-button inline-button';
+  link.href = `./login.html?redirect=${encodeURIComponent(window.location.href)}`;
+  link.textContent = 'Masuk';
+
+  card.append(icon, title, description, link);
+  elements.viewer.replaceChildren(card);
+}
+
 function renderUnavailableViewer(module) {
   setText(
     elements.viewerTitle,
@@ -625,7 +583,8 @@ function renderUnavailableViewer(module) {
 function configureActionButtons(
   module,
   fileUrl,
-  videoEmbedUrl
+  videoEmbedUrl,
+  downloadUrl = ''
 ) {
   setHidden(elements.openButton, true);
   setHidden(elements.downloadButton, true);
@@ -656,7 +615,7 @@ function configureActionButtons(
   ) {
     configureLinkButton(
       elements.downloadButton,
-      fileUrl,
+      downloadUrl || fileUrl,
       'Unduh File'
     );
 

@@ -16,7 +16,9 @@
 
 'use strict';
 
-import { DEMO_MODULES } from './modules-data.js';
+import {
+  API
+} from './api.js?v=20260715-1';
 
 const APP_CONFIG = Object.freeze({
   viewStorageKey: 'pma_module_views',

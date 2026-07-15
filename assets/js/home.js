@@ -17,17 +17,9 @@
    CONFIGURATION
    ========================================================== */
 
-const APP_CONFIG = Object.freeze({
-  appTitle: 'PMA Knowledge Hub',
-  initialModuleLimit: 6,
-
-  storageKeys: Object.freeze({
-    materialRequests: 'pma_material_requests',
-    userSession: 'pma_user_session'
-  })
-});
-
-import { DEMO_MODULES } from './modules-data.js';
+import {
+  API
+} from './api.js?v=20260715-1';
 
 
 /* ==========================================================

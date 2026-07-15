@@ -1,92 +1,26 @@
 /**
  * PMA Knowledge Hub
- * Homepage controller untuk GitHub Pages.
- *
- * Tahap saat ini:
- * - Frontend dapat berjalan tanpa backend.
- * - Modul menggunakan data demo.
- * - Request materi disimpan sementara di localStorage browser.
- *
- * Tahap berikutnya:
- * - Fungsi pada object API diganti dengan koneksi Supabase.
+ * Homepage controller — Supabase version.
  */
 
 'use strict';
+
+import { API } from './api.js?v=20260715-1';
 
 /* ==========================================================
    CONFIGURATION
    ========================================================== */
 
-import {
-  API
-} from './api.js?v=20260715-1';
+const APP_CONFIG = Object.freeze({
+  appTitle: 'PMA Knowledge Hub',
+  initialModuleLimit: 6,
 
-
-/* ==========================================================
-   API ADAPTER
-   Nanti bagian ini yang diganti dengan Supabase.
-   ========================================================== */
-
-const API = Object.freeze({
-  async getPublishedModules() {
-    await delay(450);
-
-    return DEMO_MODULES
-      .filter((module) => module.status === 'PUBLISHED')
-      .map((module) => ({ ...module }));
-  },
-
-  async getCurrentUser() {
-    const storedSession = readLocalStorage(
-      APP_CONFIG.storageKeys.userSession,
-      null
-    );
-
-    if (!storedSession || typeof storedSession !== 'object') {
-      return null;
-    }
-
-    return storedSession;
-  },
-
-  async submitMaterialRequest(payload) {
-    await delay(500);
-
-    const currentRequests = readLocalStorage(
-      APP_CONFIG.storageKeys.materialRequests,
-      []
-    );
-
-    const safeRequests = Array.isArray(currentRequests)
-      ? currentRequests
-      : [];
-
-    const request = {
-      requestId: createId('REQ'),
-      name: cleanText(payload.name),
-      email: cleanText(payload.email).toLowerCase(),
-      department: cleanText(payload.department),
-      requestedMaterial: cleanText(payload.requestedMaterial),
-      description: cleanText(payload.description),
-      status: 'NEW',
-      createdAt: new Date().toISOString()
-    };
-
-    safeRequests.push(request);
-
-    writeLocalStorage(
-      APP_CONFIG.storageKeys.materialRequests,
-      safeRequests
-    );
-
-    return {
-      success: true,
-      requestId: request.requestId,
-      message:
-        'Request tersimpan sementara di browser untuk pengujian frontend.'
-    };
-  }
+  storageKeys: Object.freeze({
+    materialRequests: 'pma_material_requests',
+    userSession: 'pma_user_session'
+  })
 });
+
 
 
 /* ==========================================================
@@ -278,7 +212,7 @@ function renderUserInterface() {
   setHidden(elements.loginLink, true);
   setHidden(elements.loginMobileLink, true);
   setHidden(elements.userProfile, false);
-  setAdminLinksVisible(role === 'ADMIN');
+  setAdminLinksVisible(['ADMIN', 'EDITOR'].includes(role));
 }
 
 function setAdminLinksVisible(isVisible) {

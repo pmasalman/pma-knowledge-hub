@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1"
+  >
+
+  <meta
+    name="description"
+    content="Detail materi pembelajaran PMA Knowledge Hub."
+  >
+
+  <meta
+    name="theme-color"
+    content="#a7192b"
+  >
+
+  <title>Detail Modul — PMA Knowledge Hub</title>
+
+  <link
+    rel="stylesheet"
+    href="./assets/css/styles.css?v=20260715-4"
+  >
+</head>
+
+<body data-page="module">
+  <a
+    class="skip-link"
+    href="#main-content"
+  >
+    Langsung ke konten utama
+  </a>
+
+  <header
+    class="site-header"
+    id="site-header"
+  >
+    <div class="header-container">
+      <a
+        class="brand"
+        href="./index.html"
+        aria-label="PMA Knowledge Hub - Beranda"
+      >
+        <div
+          class="brand-mark"
+          aria-hidden="true"
+        >
+          <span>PMA</span>
+        </div>
+
+        <div class="brand-text">
+          <strong>PMA Knowledge Hub</strong>
+          <small>Learn • Share • Grow</small>
+        </div>
+      </a>
+
+      <nav
+        class="desktop-navigation"
+        aria-label="Navigasi utama"
+      >
+        <a
+          class="nav-link"
+          href="./index.html"
+        >
+          Beranda
+        </a>
+
+        <a
+          class="nav-link"
+          href="./index.html#bank-modul"
+        >
+          Bank Modul
+        </a>
+
+        <a
+          class="nav-link"
+          href="./index.html#kategori"
+        >
+          Kategori
+        </a>
+
+        <a
+          class="nav-link"
+          href="./index.html#request-materi"
+        >
+          Request Materi
+        </a>
+      </nav>
+
+      <div class="header-actions">
+        <a
+          class="secondary-button login-link"
+          href="./login.html"
+        >
+          Masuk
+        </a>
+
+        <button
+          class="mobile-menu-button"
+          id="mobile-menu-button"
+          type="button"
+          aria-label="Buka menu navigasi"
+          aria-controls="mobile-navigation"
+          aria-expanded="false"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+
+    <nav
+      class="mobile-navigation"
+      id="mobile-navigation"
+      aria-label="Navigasi perangkat seluler"
+      hidden
+    >
+      <a href="./index.html">
+        Beranda
+      </a>
+
+      <a href="./index.html#bank-modul">
+        Bank Modul
+      </a>
+
+      <a href="./index.html#kategori">
+        Kategori
+      </a>
+
+      <a href="./index.html#request-materi">
+        Request Materi
+      </a>
+    </nav>
+  </header>
+
+  <main
+    id="main-content"
+    class="module-detail-main"
+  >
+    <section
+      class="module-detail-loading"
+      id="module-detail-loading"
+      aria-live="polite"
+    >
+      <div class="content-container">
+        <div class="module-detail-loading-card">
+          <div class="skeleton module-detail-skeleton-title"></div>
+          <div class="skeleton module-detail-skeleton-text"></div>
+          <div class="skeleton module-detail-skeleton-viewer"></div>
+        </div>
+      </div>
+    </section>
+
+    <section
+      class="module-detail-error"
+      id="module-detail-error"
+      hidden
+    >
+      <div class="content-container">
+        <div class="feedback-state">
+          <div class="feedback-icon">!</div>
+
+          <h1>Materi tidak ditemukan</h1>
+
+          <p id="module-detail-error-message">
+            Periksa kembali alamat materi yang kamu buka.
+          </p>
+
+          <a
+            class="primary-button inline-button"
+            href="./index.html#bank-modul"
+          >
+            Kembali ke Bank Modul
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <article
+      class="module-detail-page"
+      id="module-detail-page"
+      hidden
+    >
+      <section class="module-detail-hero">
+        <div class="content-container">
+          <nav
+            class="breadcrumb"
+            aria-label="Breadcrumb"
+          >
+            <a href="./index.html">
+              Beranda
+            </a>
+
+            <span aria-hidden="true">/</span>
+
+            <a href="./index.html#bank-modul">
+              Bank Modul
+            </a>
+
+            <span aria-hidden="true">/</span>
+
+            <span id="breadcrumb-title">
+              Detail Modul
+            </span>
+          </nav>
+
+          <div class="module-detail-heading">
+            <div class="module-detail-heading-content">
+              <div
+                class="module-detail-badges"
+                id="module-detail-badges"
+              ></div>
+
+              <h1 id="module-detail-title">
+                Detail Modul
+              </h1>
+
+              <p id="module-detail-description">
+                Deskripsi materi.
+              </p>
+
+              <div class="module-detail-actions">
+                <a
+                  class="primary-button inline-button"
+                  id="open-material-button"
+                  href="#"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  hidden
+                >
+                  Buka Materi
+                </a>
+
+                <a
+                  class="secondary-button inline-button"
+                  id="download-material-button"
+                  href="#"
+                  download
+                  hidden
+                >
+                  Unduh File
+                </a>
+
+                <button
+                  class="secondary-button"
+                  id="copy-module-link-button"
+                  type="button"
+                >
+                  Salin Link
+                </button>
+              </div>
+            </div>
+
+            <div
+              class="module-detail-cover"
+              id="module-detail-cover"
+              aria-hidden="true"
+            >
+              <span id="module-detail-cover-icon">
+                📘
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="module-detail-content-section">
+        <div class="content-container module-detail-layout">
+          <div class="module-content-column">
+            <div class="module-viewer-card">
+              <div class="module-viewer-header">
+                <div>
+                  <span class="section-eyebrow">
+                    Materi Pembelajaran
+                  </span>
+
+                  <h2 id="module-viewer-title">
+                    Preview Materi
+                  </h2>
+                </div>
+
+                <span
+                  class="module-access-status"
+                  id="module-access-status"
+                >
+                  Materi terverifikasi
+                </span>
+              </div>
+
+              <div
+                class="module-content-viewer"
+                id="module-content-viewer"
+              ></div>
+            </div>
+          </div>
+
+          <aside class="module-info-sidebar">
+            <section class="module-info-card">
+              <h2>Informasi Modul</h2>
+
+              <dl class="module-info-list">
+                <div>
+                  <dt>Kategori</dt>
+                  <dd id="module-info-category">—</dd>
+                </div>
+
+                <div>
+                  <dt>Departemen</dt>
+                  <dd id="module-info-department">—</dd>
+                </div>
+
+                <div>
+                  <dt>Jenis materi</dt>
+                  <dd id="module-info-type">—</dd>
+                </div>
+
+                <div>
+                  <dt>Pemilik materi</dt>
+                  <dd id="module-info-owner">—</dd>
+                </div>
+
+                <div>
+                  <dt>Diperbarui</dt>
+                  <dd id="module-info-updated">—</dd>
+                </div>
+
+                <div>
+                  <dt>Jumlah dilihat</dt>
+                  <dd id="module-info-views">0</dd>
+                </div>
+              </dl>
+            </section>
+
+            <section class="module-help-card">
+              <span aria-hidden="true">💬</span>
+
+              <h2>Ada kendala materi?</h2>
+
+              <p>
+                Laporkan file yang tidak dapat dibuka atau
+                sampaikan kebutuhan materi melalui form request.
+              </p>
+
+              <a
+                href="./index.html#request-materi"
+                class="text-link"
+              >
+                Request Materi →
+              </a>
+            </section>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section related-modules-section">
+        <div class="content-container">
+          <div class="section-heading">
+            <div>
+              <span class="section-eyebrow">
+                Materi Terkait
+              </span>
+
+              <h2>Pelajari materi lainnya</h2>
+
+              <p>
+                Rekomendasi materi dengan kategori atau
+                departemen yang serupa.
+              </p>
+            </div>
+
+            <a
+              class="text-link"
+              href="./index.html#bank-modul"
+            >
+              Lihat semua materi →
+            </a>
+          </div>
+
+          <div
+            class="module-grid"
+            id="related-module-grid"
+          ></div>
+        </div>
+      </section>
+    </article>
+  </main>
+
+  <div
+    class="toast-container"
+    id="toast-container"
+    aria-live="polite"
+    aria-atomic="true"
+  ></div>
+
+  <footer class="site-footer">
+    <div class="content-container footer-container">
+      <div class="footer-brand">
+        <div class="brand-mark footer-brand-mark">
+          <span>PMA</span>
+        </div>
+
+        <div>
+          <strong>PMA Knowledge Hub</strong>
+
+          <p>
+            Pusat pengetahuan dan pembelajaran internal
+            PT Pinus Merah Abadi.
+          </p>
+        </div>
+      </div>
+
+      <div class="footer-links">
+        <a href="./index.html">
+          Beranda
+        </a>
+
+        <a href="./index.html#bank-modul">
+          Bank Modul
+        </a>
+
+        <a href="./index.html#request-materi">
+          Request Materi
+        </a>
+      </div>
+
+      <p class="footer-copyright">
+        ©
+        <span id="current-year"></span>
+        PT Pinus Merah Abadi. Internal use only.
+      </p>
+    </div>
+  </footer>
+
+  <noscript>
+    <div class="noscript-message">
+      JavaScript harus diaktifkan agar halaman detail dapat
+      digunakan.
+    </div>
+  </noscript>
+
+  <script
+    type="module"
+    src="./assets/js/module.js?v=20260715-1"
+  ></script>
+</body>
+</html>

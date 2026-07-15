@@ -8,89 +8,1182 @@
     content="width=device-width, initial-scale=1"
   >
 
+  <meta
+    name="description"
+    content="PMA Knowledge Hub — pusat modul, panduan, SOP, dan materi pembelajaran PT Pinus Merah Abadi."
+  >
+
+  <meta
+    name="theme-color"
+    content="#a7192b"
+  >
+
+  <meta
+    property="og:title"
+    content="PMA Knowledge Hub"
+  >
+
+  <meta
+    property="og:description"
+    content="Pusat pengetahuan dan pembelajaran PT Pinus Merah Abadi."
+  >
+
+  <meta
+    property="og:type"
+    content="website"
+  >
+
   <title>PMA Knowledge Hub</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+  <!--
+    File ini berada di root repository GitHub.
 
-    body {
-      margin: 0;
-      min-height: 100vh;
-      display: grid;
-      place-items: center;
-      padding: 24px;
-      font-family: Arial, sans-serif;
-      background: #f8f5f1;
-      color: #202124;
-    }
+    Struktur yang digunakan:
+    index.html
+    assets/css/styles.css
+    assets/js/home.js
+  -->
 
-    main {
-      width: 100%;
-      max-width: 720px;
-      padding: 48px;
-      border-radius: 24px;
-      text-align: center;
-      background: #ffffff;
-      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.12);
-    }
+  <link
+    rel="stylesheet"
+    href="./assets/css/styles.css"
+  >
 
-    .logo {
-      width: 72px;
-      height: 72px;
-      display: grid;
-      place-items: center;
-      margin: 0 auto 24px;
-      border-radius: 20px;
-      color: #ffffff;
-      background: #a7192b;
-      font-weight: 800;
-    }
-
-    h1 {
-      margin: 0;
-      font-size: clamp(36px, 7vw, 64px);
-    }
-
-    h1 span {
-      color: #a7192b;
-    }
-
-    p {
-      margin: 18px 0 0;
-      color: #6b7280;
-      line-height: 1.7;
-    }
-
-    .status {
-      display: inline-block;
-      margin-top: 28px;
-      padding: 10px 16px;
-      border-radius: 999px;
-      color: #166534;
-      background: #dcfce7;
-      font-weight: 700;
-    }
-  </style>
+  <!-- Aktifkan setelah favicon tersedia. -->
+  <!--
+  <link
+    rel="icon"
+    href="./assets/images/favicon.png"
+    type="image/png"
+  >
+  -->
 </head>
 
-<body>
-  <main>
-    <div class="logo">PMA</div>
+<body data-page="home">
+  <!-- ======================================================
+       ACCESSIBILITY
+       ====================================================== -->
 
-    <h1>
-      PMA <span>Knowledge Hub</span>
-    </h1>
+  <a
+    class="skip-link"
+    href="#main-content"
+  >
+    Langsung ke konten utama
+  </a>
 
-    <p>
-      Pusat pengetahuan dan pembelajaran internal
-      PT Pinus Merah Abadi.
-    </p>
+  <!-- ======================================================
+       HEADER
+       ====================================================== -->
 
-    <div class="status">
-      Website berhasil dijalankan
+  <header
+    class="site-header"
+    id="site-header"
+  >
+    <div class="header-container">
+      <a
+        class="brand"
+        href="./index.html"
+        aria-label="PMA Knowledge Hub - Beranda"
+      >
+        <div
+          class="brand-mark"
+          aria-hidden="true"
+        >
+          <span>PMA</span>
+        </div>
+
+        <div class="brand-text">
+          <strong>PMA Knowledge Hub</strong>
+          <small>Learn • Share • Grow</small>
+        </div>
+      </a>
+
+      <nav
+        class="desktop-navigation"
+        aria-label="Navigasi utama"
+      >
+        <a
+          class="nav-link active"
+          href="./index.html"
+          aria-current="page"
+        >
+          Beranda
+        </a>
+
+        <a
+          class="nav-link"
+          href="#bank-modul"
+        >
+          Bank Modul
+        </a>
+
+        <a
+          class="nav-link"
+          href="#kategori"
+        >
+          Kategori
+        </a>
+
+        <a
+          class="nav-link"
+          href="#request-materi"
+        >
+          Request Materi
+        </a>
+
+        <!--
+          Disembunyikan secara default.
+          home.js akan menampilkan link ini jika pengguna adalah admin.
+        -->
+        <a
+          class="nav-link admin-link"
+          id="admin-nav-link"
+          href="./admin.html"
+          hidden
+        >
+          Admin
+        </a>
+      </nav>
+
+      <div class="header-actions">
+        <!-- Tampil ketika pengguna belum login. -->
+        <a
+          class="secondary-button login-link"
+          id="login-link"
+          href="./login.html"
+        >
+          Masuk
+        </a>
+
+        <!--
+          Disembunyikan secara default.
+          home.js akan mengisi data profil setelah login.
+        -->
+        <div
+          class="user-profile"
+          id="user-profile"
+          title="Profil pengguna"
+          hidden
+        >
+          <div
+            class="user-avatar"
+            aria-hidden="true"
+          >
+            <span id="user-initial">P</span>
+          </div>
+
+          <div class="user-info">
+            <strong id="user-name">
+              Pengguna PMA
+            </strong>
+
+            <small id="user-role">
+              Employee
+            </small>
+          </div>
+        </div>
+
+        <button
+          class="mobile-menu-button"
+          id="mobile-menu-button"
+          type="button"
+          aria-label="Buka menu navigasi"
+          aria-controls="mobile-navigation"
+          aria-expanded="false"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
     </div>
+
+    <nav
+      class="mobile-navigation"
+      id="mobile-navigation"
+      aria-label="Navigasi perangkat seluler"
+      hidden
+    >
+      <a href="./index.html">
+        Beranda
+      </a>
+
+      <a href="#bank-modul">
+        Bank Modul
+      </a>
+
+      <a href="#kategori">
+        Kategori
+      </a>
+
+      <a href="#request-materi">
+        Request Materi
+      </a>
+
+      <a
+        id="admin-mobile-link"
+        href="./admin.html"
+        hidden
+      >
+        Admin
+      </a>
+
+      <a
+        id="login-mobile-link"
+        href="./login.html"
+      >
+        Masuk
+      </a>
+    </nav>
+  </header>
+
+  <!-- ======================================================
+       MAIN CONTENT
+       ====================================================== -->
+
+  <main id="main-content">
+    <!-- ====================================================
+         HERO
+         ==================================================== -->
+
+    <section class="hero-section">
+      <div class="hero-container">
+        <div class="hero-content">
+          <div class="hero-badge">
+            <span class="hero-badge-dot"></span>
+            Pusat Pengetahuan Internal PMA
+          </div>
+
+          <h1>
+            Temukan pengetahuan untuk
+            <span>bertumbuh bersama</span>
+          </h1>
+
+          <p class="hero-description">
+            Akses modul training, SOP, panduan kerja, video
+            pembelajaran, dan materi pendukung dalam satu tempat.
+          </p>
+
+          <form
+            class="hero-search"
+            id="global-search-form"
+            role="search"
+            autocomplete="off"
+          >
+            <div
+              class="search-icon"
+              aria-hidden="true"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                width="22"
+                height="22"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              >
+                <circle
+                  cx="11"
+                  cy="11"
+                  r="7"
+                ></circle>
+
+                <path
+                  d="m20 20-3.5-3.5"
+                ></path>
+              </svg>
+            </div>
+
+            <label
+              class="sr-only"
+              for="global-search-input"
+            >
+              Cari materi
+            </label>
+
+            <input
+              id="global-search-input"
+              name="search"
+              type="search"
+              placeholder="Cari modul, SOP, panduan, atau materi..."
+              maxlength="120"
+            >
+
+            <button
+              class="clear-search-button"
+              id="clear-search-button"
+              type="button"
+              aria-label="Hapus pencarian"
+              hidden
+            >
+              ×
+            </button>
+
+            <button
+              class="search-submit-button"
+              type="submit"
+            >
+              Cari Materi
+            </button>
+          </form>
+
+          <div class="popular-searches">
+            <span>Pencarian populer:</span>
+
+            <button
+              type="button"
+              class="quick-search-button"
+              data-search="Onboarding"
+            >
+              Onboarding
+            </button>
+
+            <button
+              type="button"
+              class="quick-search-button"
+              data-search="Sales"
+            >
+              Sales
+            </button>
+
+            <button
+              type="button"
+              class="quick-search-button"
+              data-search="Leadership"
+            >
+              Leadership
+            </button>
+
+            <button
+              type="button"
+              class="quick-search-button"
+              data-search="SOP"
+            >
+              SOP
+            </button>
+          </div>
+        </div>
+
+        <div
+          class="hero-visual"
+          aria-hidden="true"
+        >
+          <div class="visual-background-circle"></div>
+
+          <div class="knowledge-card knowledge-card-main">
+            <div class="knowledge-card-header">
+              <div class="mini-logo">
+                PMA
+              </div>
+
+              <div>
+                <span>Knowledge Library</span>
+                <small>Internal Learning Portal</small>
+              </div>
+            </div>
+
+            <div class="visual-search-bar">
+              <span></span>
+              <span></span>
+            </div>
+
+            <div class="visual-module-grid">
+              <div class="visual-module-card">
+                <div class="visual-card-icon">
+                  📘
+                </div>
+
+                <div class="visual-card-lines">
+                  <span></span>
+                  <span></span>
+                </div>
+              </div>
+
+              <div class="visual-module-card">
+                <div class="visual-card-icon">
+                  📋
+                </div>
+
+                <div class="visual-card-lines">
+                  <span></span>
+                  <span></span>
+                </div>
+              </div>
+
+              <div class="visual-module-card">
+                <div class="visual-card-icon">
+                  🎥
+                </div>
+
+                <div class="visual-card-lines">
+                  <span></span>
+                  <span></span>
+                </div>
+              </div>
+
+              <div class="visual-module-card">
+                <div class="visual-card-icon">
+                  💡
+                </div>
+
+                <div class="visual-card-lines">
+                  <span></span>
+                  <span></span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="floating-card floating-card-top">
+            <span class="floating-icon">
+              ✓
+            </span>
+
+            <div>
+              <strong>Materi terverifikasi</strong>
+              <small>Konten internal PMA</small>
+            </div>
+          </div>
+
+          <div class="floating-card floating-card-bottom">
+            <span class="floating-icon">
+              ↗
+            </span>
+
+            <div>
+              <strong>Mudah diakses</strong>
+              <small>Belajar kapan saja</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================
+         STATISTICS
+         ==================================================== -->
+
+    <section
+      class="statistics-section"
+      aria-label="Statistik PMA Knowledge Hub"
+    >
+      <div class="content-container statistics-grid">
+        <article class="statistic-card">
+          <div class="statistic-icon">
+            📚
+          </div>
+
+          <div>
+            <strong id="module-count">
+              0
+            </strong>
+
+            <span>Materi tersedia</span>
+          </div>
+        </article>
+
+        <article class="statistic-card">
+          <div class="statistic-icon">
+            🗂️
+          </div>
+
+          <div>
+            <strong id="category-count">
+              0
+            </strong>
+
+            <span>Kategori materi</span>
+          </div>
+        </article>
+
+        <article class="statistic-card">
+          <div class="statistic-icon">
+            ✨
+          </div>
+
+          <div>
+            <strong id="latest-update">
+              —
+            </strong>
+
+            <span>Pembaruan terakhir</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ====================================================
+         CATEGORIES
+         ==================================================== -->
+
+    <section
+      class="section categories-section"
+      id="kategori"
+    >
+      <div class="content-container">
+        <div class="section-heading">
+          <div>
+            <span class="section-eyebrow">
+              Jelajahi Pengetahuan
+            </span>
+
+            <h2>Pilih kategori materi</h2>
+
+            <p>
+              Temukan materi berdasarkan kebutuhan pekerjaan
+              dan pengembangan kompetensimu.
+            </p>
+          </div>
+
+          <a
+            class="text-link"
+            href="#bank-modul"
+          >
+            Lihat semua materi
+            <span aria-hidden="true">→</span>
+          </a>
+        </div>
+
+        <div
+          class="category-grid"
+          id="category-grid"
+        >
+          <button
+            class="category-card"
+            type="button"
+            data-category="Modul Training"
+          >
+            <span class="category-icon category-icon-red">
+              📘
+            </span>
+
+            <span class="category-content">
+              <strong>Modul Training</strong>
+
+              <small>
+                Onboarding, refreshment, dan materi pelatihan.
+              </small>
+            </span>
+
+            <span
+              class="category-arrow"
+              aria-hidden="true"
+            >
+              →
+            </span>
+          </button>
+
+          <button
+            class="category-card"
+            type="button"
+            data-category="SOP & Panduan Kerja"
+          >
+            <span class="category-icon category-icon-orange">
+              📋
+            </span>
+
+            <span class="category-content">
+              <strong>SOP & Panduan Kerja</strong>
+
+              <small>
+                Prosedur dan petunjuk operasional perusahaan.
+              </small>
+            </span>
+
+            <span
+              class="category-arrow"
+              aria-hidden="true"
+            >
+              →
+            </span>
+          </button>
+
+          <button
+            class="category-card"
+            type="button"
+            data-category="Video Learning"
+          >
+            <span class="category-icon category-icon-blue">
+              🎥
+            </span>
+
+            <span class="category-content">
+              <strong>Video Learning</strong>
+
+              <small>
+                Rekaman training, tutorial, dan video edukatif.
+              </small>
+            </span>
+
+            <span
+              class="category-arrow"
+              aria-hidden="true"
+            >
+              →
+            </span>
+          </button>
+
+          <button
+            class="category-card"
+            type="button"
+            data-category="Product Knowledge"
+          >
+            <span class="category-icon category-icon-yellow">
+              💡
+            </span>
+
+            <span class="category-content">
+              <strong>Product Knowledge</strong>
+
+              <small>
+                Pengetahuan produk dan informasi bisnis PMA.
+              </small>
+            </span>
+
+            <span
+              class="category-arrow"
+              aria-hidden="true"
+            >
+              →
+            </span>
+          </button>
+
+          <button
+            class="category-card"
+            type="button"
+            data-category="Leadership & Soft Skill"
+          >
+            <span class="category-icon category-icon-purple">
+              👥
+            </span>
+
+            <span class="category-content">
+              <strong>Leadership & Soft Skill</strong>
+
+              <small>
+                Komunikasi, coaching, dan pengembangan diri.
+              </small>
+            </span>
+
+            <span
+              class="category-arrow"
+              aria-hidden="true"
+            >
+              →
+            </span>
+          </button>
+
+          <button
+            class="category-card"
+            type="button"
+            data-category=""
+          >
+            <span class="category-icon category-icon-green">
+              🆕
+            </span>
+
+            <span class="category-content">
+              <strong>Semua Materi</strong>
+
+              <small>
+                Lihat seluruh koleksi dalam bank modul PMA.
+              </small>
+            </span>
+
+            <span
+              class="category-arrow"
+              aria-hidden="true"
+            >
+              →
+            </span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================
+         MODULE BANK
+         ==================================================== -->
+
+    <section
+      class="section module-bank-section"
+      id="bank-modul"
+    >
+      <div class="content-container">
+        <div class="section-heading">
+          <div>
+            <span class="section-eyebrow">
+              Bank Modul
+            </span>
+
+            <h2>Materi pembelajaran pilihan</h2>
+
+            <p id="module-section-description">
+              Materi terbaru dan pilihan untuk mendukung
+              pekerjaanmu.
+            </p>
+          </div>
+
+          <button
+            class="secondary-button"
+            id="show-all-modules-button"
+            type="button"
+          >
+            Lihat Semua Modul
+          </button>
+        </div>
+
+        <div
+          class="active-filter-bar"
+          id="active-filter-bar"
+          hidden
+        >
+          <div>
+            <span>Filter aktif:</span>
+
+            <strong id="active-filter-text">
+              Semua materi
+            </strong>
+          </div>
+
+          <button
+            type="button"
+            id="reset-filter-button"
+          >
+            Reset filter
+          </button>
+        </div>
+
+        <!-- Loading state -->
+
+        <div
+          class="loading-state"
+          id="loading-state"
+          aria-live="polite"
+        >
+          <div class="module-grid">
+            <div class="module-card skeleton-card">
+              <div class="skeleton skeleton-image"></div>
+
+              <div class="skeleton-card-body">
+                <div class="skeleton skeleton-label"></div>
+                <div class="skeleton skeleton-title"></div>
+                <div class="skeleton skeleton-text"></div>
+                <div class="skeleton skeleton-text short"></div>
+              </div>
+            </div>
+
+            <div class="module-card skeleton-card">
+              <div class="skeleton skeleton-image"></div>
+
+              <div class="skeleton-card-body">
+                <div class="skeleton skeleton-label"></div>
+                <div class="skeleton skeleton-title"></div>
+                <div class="skeleton skeleton-text"></div>
+                <div class="skeleton skeleton-text short"></div>
+              </div>
+            </div>
+
+            <div class="module-card skeleton-card">
+              <div class="skeleton skeleton-image"></div>
+
+              <div class="skeleton-card-body">
+                <div class="skeleton skeleton-label"></div>
+                <div class="skeleton skeleton-title"></div>
+                <div class="skeleton skeleton-text"></div>
+                <div class="skeleton skeleton-text short"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Error state -->
+
+        <div
+          class="feedback-state error-state"
+          id="error-state"
+          hidden
+        >
+          <div class="feedback-icon">
+            !
+          </div>
+
+          <h3>Materi gagal dimuat</h3>
+
+          <p id="error-message">
+            Terjadi kendala saat mengambil data modul.
+          </p>
+
+          <button
+            class="primary-button"
+            id="retry-button"
+            type="button"
+          >
+            Muat Ulang
+          </button>
+        </div>
+
+        <!-- Empty state -->
+
+        <div
+          class="feedback-state empty-state"
+          id="empty-state"
+          hidden
+        >
+          <div class="feedback-icon">
+            🔍
+          </div>
+
+          <h3>Materi belum ditemukan</h3>
+
+          <p>
+            Coba gunakan kata kunci lain atau hapus filter
+            pencarian.
+          </p>
+
+          <button
+            class="primary-button"
+            id="empty-reset-button"
+            type="button"
+          >
+            Tampilkan Semua Materi
+          </button>
+        </div>
+
+        <!-- Module cards are rendered by home.js -->
+
+        <div
+          class="module-grid"
+          id="module-grid"
+          aria-live="polite"
+        ></div>
+      </div>
+    </section>
+
+    <!-- ====================================================
+         FEATURED MODULES
+         ==================================================== -->
+
+    <section
+      class="section featured-section"
+      id="materi-unggulan"
+    >
+      <div class="content-container">
+        <div class="section-heading">
+          <div>
+            <span class="section-eyebrow">
+              Rekomendasi
+            </span>
+
+            <h2>Materi unggulan</h2>
+
+            <p>
+              Materi penting yang direkomendasikan oleh
+              Human Capital.
+            </p>
+          </div>
+        </div>
+
+        <div
+          class="featured-module-list"
+          id="featured-module-list"
+        >
+          <div class="featured-placeholder">
+            Materi unggulan sedang dimuat...
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================
+         REQUEST MATERIAL
+         ==================================================== -->
+
+    <section
+      class="section request-section"
+      id="request-materi"
+    >
+      <div class="content-container">
+        <div class="request-card">
+          <div class="request-decoration request-decoration-one"></div>
+          <div class="request-decoration request-decoration-two"></div>
+
+          <div class="request-content">
+            <span class="request-label">
+              Tidak menemukan materinya?
+            </span>
+
+            <h2>
+              Sampaikan kebutuhan materi pembelajaranmu
+            </h2>
+
+            <p>
+              Ajukan materi baru atau laporkan file yang tidak
+              dapat dibuka. Tim Human Capital akan membantu
+              menindaklanjutinya.
+            </p>
+
+            <button
+              class="request-button"
+              id="open-request-modal-button"
+              type="button"
+            >
+              Request Materi
+              <span aria-hidden="true">→</span>
+            </button>
+          </div>
+
+          <div
+            class="request-illustration"
+            aria-hidden="true"
+          >
+            <div class="request-document">
+              <div class="request-document-header"></div>
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+
+            <div class="request-message-bubble">
+              <strong>+</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
+
+  <!-- ======================================================
+       REQUEST MODAL
+       ====================================================== -->
+
+  <div
+    class="modal-backdrop"
+    id="request-modal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="request-modal-title"
+    hidden
+  >
+    <div class="modal-card">
+      <div class="modal-header">
+        <div>
+          <span class="section-eyebrow">
+            Request Materi
+          </span>
+
+          <h2 id="request-modal-title">
+            Ajukan kebutuhan materi
+          </h2>
+        </div>
+
+        <button
+          class="modal-close-button"
+          id="close-request-modal-button"
+          type="button"
+          aria-label="Tutup formulir"
+        >
+          ×
+        </button>
+      </div>
+
+      <form
+        class="request-form"
+        id="request-material-form"
+      >
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="request-name">
+              Nama
+            </label>
+
+            <input
+              id="request-name"
+              name="name"
+              type="text"
+              maxlength="100"
+              autocomplete="name"
+              required
+            >
+          </div>
+
+          <div class="form-group">
+            <label for="request-email">
+              Email
+            </label>
+
+            <input
+              id="request-email"
+              name="email"
+              type="email"
+              maxlength="150"
+              autocomplete="email"
+              required
+            >
+          </div>
+
+          <div class="form-group">
+            <label for="request-department">
+              Departemen
+            </label>
+
+            <input
+              id="request-department"
+              name="department"
+              type="text"
+              placeholder="Contoh: Human Capital"
+              maxlength="100"
+            >
+          </div>
+
+          <div class="form-group">
+            <label for="requested-material">
+              Materi yang dibutuhkan
+            </label>
+
+            <input
+              id="requested-material"
+              name="requestedMaterial"
+              type="text"
+              placeholder="Contoh: Modul Leadership Dasar"
+              maxlength="150"
+              required
+            >
+          </div>
+
+          <div class="form-group form-group-full">
+            <label for="request-description">
+              Keterangan
+            </label>
+
+            <textarea
+              id="request-description"
+              name="description"
+              rows="5"
+              placeholder="Jelaskan kebutuhan materi atau kendala yang dialami..."
+              maxlength="1000"
+            ></textarea>
+
+            <small class="field-hint">
+              Maksimal 1.000 karakter.
+            </small>
+          </div>
+        </div>
+
+        <div
+          class="form-message"
+          id="request-form-message"
+          role="status"
+          hidden
+        ></div>
+
+        <div class="modal-actions">
+          <button
+            class="secondary-button"
+            id="cancel-request-button"
+            type="button"
+          >
+            Batal
+          </button>
+
+          <button
+            class="primary-button"
+            id="submit-request-button"
+            type="submit"
+          >
+            <span class="button-text">
+              Kirim Request
+            </span>
+
+            <span
+              class="button-loading"
+              hidden
+            >
+              Mengirim...
+            </span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ======================================================
+       TOAST
+       ====================================================== -->
+
+  <div
+    class="toast-container"
+    id="toast-container"
+    aria-live="polite"
+    aria-atomic="true"
+  ></div>
+
+  <!-- ======================================================
+       FOOTER
+       ====================================================== -->
+
+  <footer class="site-footer">
+    <div class="content-container footer-container">
+      <div class="footer-brand">
+        <div class="brand-mark footer-brand-mark">
+          <span>PMA</span>
+        </div>
+
+        <div>
+          <strong>PMA Knowledge Hub</strong>
+
+          <p>
+            Pusat pengetahuan dan pembelajaran internal
+            PT Pinus Merah Abadi.
+          </p>
+        </div>
+      </div>
+
+      <div class="footer-links">
+        <a href="./index.html">
+          Beranda
+        </a>
+
+        <a href="#bank-modul">
+          Bank Modul
+        </a>
+
+        <a href="#request-materi">
+          Request Materi
+        </a>
+
+        <a
+          id="admin-footer-link"
+          href="./admin.html"
+          hidden
+        >
+          Admin
+        </a>
+      </div>
+
+      <p class="footer-copyright">
+        ©
+        <span id="current-year"></span>
+        PT Pinus Merah Abadi. Internal use only.
+      </p>
+    </div>
+  </footer>
+
+  <noscript>
+    <div class="noscript-message">
+      JavaScript harus diaktifkan agar PMA Knowledge Hub dapat
+      digunakan.
+    </div>
+  </noscript>
+
+  <!--
+    home.js menggunakan JavaScript module agar nanti mudah
+    mengimpor Supabase client, konfigurasi, dan utility.
+  -->
+  <script
+    type="module"
+    src="./assets/js/home.js"
+  ></script>
 </body>
 </html>

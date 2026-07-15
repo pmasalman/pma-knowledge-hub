@@ -35,18 +35,27 @@
 
   <title>PMA Knowledge Hub</title>
 
+  <link
+    rel="preconnect"
+    href="https://cdn.jsdelivr.net"
+    crossorigin
+  >
+
   <!--
     File ini berada di root repository GitHub.
 
     Struktur yang digunakan:
     index.html
     assets/css/styles.css
+    assets/js/config.js
+    assets/js/supabase-client.js
+    assets/js/api.js
     assets/js/home.js
   -->
 
   <link
     rel="stylesheet"
-    href="./assets/css/styles.css"
+    href="./assets/css/styles.css?v=20260715-6"
   >
 
   <!-- Aktifkan setelah favicon tersedia. -->
@@ -1181,9 +1190,13 @@
     home.js menggunakan JavaScript module agar nanti mudah
     mengimpor Supabase client, konfigurasi, dan utility.
   -->
+  <!-- Supabase browser client -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <!-- Homepage controller -->
   <script
     type="module"
-    src="./assets/js/home.js"
+    src="./assets/js/home.js?v=20260715-4"
   ></script>
 </body>
 </html>

@@ -17,7 +17,7 @@ export const DEMO_MODULES = Object.freeze([
     contentType: 'PDF',
     thumbnailUrl: '',
     fileUrl: '',
-    videoUrl: '',
+    videoUrl: 'https://youtu.be/wtwENU39G5U',
     owner: 'Human Capital',
     status: 'PUBLISHED',
     featured: true,
